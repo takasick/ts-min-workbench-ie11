@@ -7,5 +7,6 @@
     },
     "scripts": {
         "fmt": "prettier --write ./src/*.ts"
-    }
+    },
+    "dependencies": {}
 }
