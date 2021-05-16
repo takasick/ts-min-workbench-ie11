@@ -1,53 +1,58 @@
-import './lib.ie11.collection.js';
+import 'url-polyfill/url-polyfill.js'
+
+import { mapBuilder, weakMapBuilder, setBuilder, weakSetBuilder} from './lib.ie11.collection.js';
 
 import { iteratorToArray } from './util.js';
 
-// Map
-const m1 = new Map([
-  [1, 3],
-  [2, 4],
-]);
+(function main() {
 
-for (let i of iteratorToArray(m1.entries())) {
-  console.log(i);
-}
+  // Map
+  const m1 = mapBuilder([
+    [1, 3],
+    [2, 4],
+  ]);
 
-// ReadonlyMap
-const m2: ReadonlyMap<string, number> = new Map([
-  ['a1', 3],
-  ['a2', 4],
-]);
+  for (let i of iteratorToArray(m1.entries())) {
+    console.log(i);
+  }
 
-for (let i of iteratorToArray(m2.entries())) {
-  console.log(i);
-}
+  // ReadonlyMap
+  const m2: ReadonlyMap<string, number> = mapBuilder([
+    ['a1', 3],
+    ['a2', 4],
+  ]);
 
-// WeakMap
-const wm1 = new WeakMap([
-  [m1, 'Map1'],
-  [new Object(), 'Map2'],
-]);
-console.log(wm1);
-console.log(wm1.get(m1));
+  for (let i of iteratorToArray(m2.entries())) {
+    console.log(i);
+  }
 
-// Set
-const s1 = new Set([1, 3]);
+  // WeakMap
+  const wm1 = weakMapBuilder([
+    [m1, 'Map1'],
+    [new Object(), 'Map2'],
+  ]);
+  console.log(wm1);
+  console.log(wm1.get(m1));
 
-for (let i of iteratorToArray(s1.keys())) {
-  console.log(i);
-}
+  // Set
+  const s1 = setBuilder([1, 3]);
 
-// ReadonlySet
-const s2: ReadonlySet<string> = new Set(['a1', 'a2']);
+  for (let i of iteratorToArray(s1.keys())) {
+    console.log(i);
+  }
 
-for (let i of iteratorToArray(s2.keys())) {
-  console.log(i);
-}
+  // ReadonlySet
+  const s2: ReadonlySet<string> = setBuilder(['a1', 'a2']);
 
-const ws1 = new WeakSet([m1, s1]);
+  for (let i of iteratorToArray(s2.keys())) {
+    console.log(i);
+  }
 
-console.log(ws1);
-console.log(ws1.has(m1));
+  const ws1 = weakSetBuilder([m1, s1]);
+
+  console.log(ws1);
+  console.log(ws1.has(m1));
+})();
 
 /*
 (function test(): void {

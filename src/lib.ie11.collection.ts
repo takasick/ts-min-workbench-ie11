@@ -1,37 +1,37 @@
-import { defProp, _glo } from './lib.js';
+// Map([iterable]) shim for IE11
+function mapBuilder<T, U>(src: [T, U][]): Map<T, U> {
+  const dst: Map<T, U> = new Map();
+  for (const [key, val] of src) {
+    dst.set(key, val);
+  }
+  return dst;
+}
 
-// Map constructor
-defProp(_glo, 'Map', function () {
-  const _super = _glo.Map;
-  return function constructor<T, U>(a: [T, U][]) {
-    const m = new _super();
-    for (let c of a) {
-      m.set(c[0], c[1]);
-    }
-    return m;
-  };
-});
+// WeakMap([iterable]) shim for IE11
+function weakMapBuilder<T>(src: [object, T][]): WeakMap<object, T> {
+  const dst: WeakMap<object, T> = new WeakMap();
+  for (const [key, val] of src) {
+    dst.set(key, val);
+  }
+  return dst;
+}
 
-// WeakMap constructor
-defProp(_glo, 'WeakMap', function () {
-  const _super = _glo.WeakMap;
-  return function constructor<T, U>(a: [T, U][]) {
-    const m = new _super();
-    for (let c of a) {
-      m.set(c[0], c[1]);
-    }
-    return m;
-  };
-});
+// Set([iterable]) shim for IE11
+function setBuilder<T>(src: T[]): Set<T> {
+  const dst: Set<T> = new Set();
+  for (const key of src) {
+    dst.add(key);
+  }
+  return dst;
+}
 
-// Set constructor
-defProp(_glo, 'Set', function () {
-  const _super = _glo.Set;
-  return function constructor<T>(a: T[]) {
-    const s = new _super();
-    for (let c of a) {
-      s.add(c);
-    }
-    return s;
-  };
-});
+// WeakSet([iterable]) shim for IE11
+function weakSetBuilder(src: object[]): WeakSet<object> {
+  const dst: WeakSet<object> = new WeakSet();
+  for (const key of src) {
+    dst.add(key);
+  }
+  return dst;
+}
+
+export { mapBuilder, weakMapBuilder, setBuilder, weakSetBuilder };
