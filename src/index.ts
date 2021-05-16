@@ -1,4 +1,4 @@
-import 'url-polyfill/url-polyfill.js'
+import './lib.ie11.dom.js';
 
 import { mapBuilder, weakMapBuilder, setBuilder, weakSetBuilder} from './lib.ie11.collection.js';
 
