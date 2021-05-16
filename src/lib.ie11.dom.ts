@@ -1,1 +1,1 @@
-import 'url-polyfill/url-polyfill.js'
+import 'url-polyfill/url-polyfill.js';

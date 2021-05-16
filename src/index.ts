@@ -1,10 +1,17 @@
 import './lib.ie11.dom.js';
 
-import { mapBuilder, weakMapBuilder, setBuilder, weakSetBuilder} from './lib.ie11.collection.js';
+import {
+  mapBuilder,
+  weakMapBuilder,
+  setBuilder,
+  weakSetBuilder,
+} from './lib.ie11.collection.js';
 
-import { iteratorToArray } from './util.js';
+import { mapEntries, setKeys } from './lib.ie11.iterable.js';
 
 (function main() {
+  const u1 = new URL('https://example.com/test?t=1&u=2#index');
+  console.log(u1);
 
   // Map
   const m1 = mapBuilder([
@@ -12,7 +19,7 @@ import { iteratorToArray } from './util.js';
     [2, 4],
   ]);
 
-  for (let i of iteratorToArray(m1.entries())) {
+  for (let i of mapEntries(m1)) {
     console.log(i);
   }
 
@@ -22,7 +29,7 @@ import { iteratorToArray } from './util.js';
     ['a2', 4],
   ]);
 
-  for (let i of iteratorToArray(m2.entries())) {
+  for (let i of mapEntries(m2)) {
     console.log(i);
   }
 
@@ -37,14 +44,14 @@ import { iteratorToArray } from './util.js';
   // Set
   const s1 = setBuilder([1, 3]);
 
-  for (let i of iteratorToArray(s1.keys())) {
+  for (let i of setKeys(s1)) {
     console.log(i);
   }
 
   // ReadonlySet
   const s2: ReadonlySet<string> = setBuilder(['a1', 'a2']);
 
-  for (let i of iteratorToArray(s2.keys())) {
+  for (let i of setKeys(s2)) {
     console.log(i);
   }
 

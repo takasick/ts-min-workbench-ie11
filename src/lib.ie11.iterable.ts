@@ -1,3 +1,24 @@
+// Map.entries() shim for IE11
+function mapEntries<T, U>(src: Map<T, U> | ReadonlyMap<T, U>): [T, U][] {
+  const dst: [T, U][] = new Array();
+  src.forEach(function (val, key) {
+    dst.push([key, val]);
+  });
+  return dst;
+}
+
+// Set.keys() shim for IE11
+function setKeys<T>(src: Set<T> | ReadonlySet<T>): T[] {
+  const dst: T[] = new Array();
+  src.forEach(function (key) {
+    dst.push(key);
+  });
+  return dst;
+}
+
+export { mapEntries, setKeys };
+
+/*
 import { defProp, _glo } from './lib.js';
 
 type IItStatement<T> = {
@@ -71,3 +92,4 @@ defProp(Set.prototype, 'keys', function () {
     return genIIt(stmt);
   };
 });
+*/
