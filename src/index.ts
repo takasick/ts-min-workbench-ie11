@@ -67,13 +67,6 @@ import './lib.ie11.dom.js';
     console.log(i);
   }
 
-  //const _glo = Function('return this')();
-  //const arr1 = new Array();
-  
-  console.dir(Symbol.iterator);
-  console.dir(Symbol.iterator.toString());
-
-  console.dir(Symbol.hasInstance);
 })('arg1', 'arg2');
 
 /*
