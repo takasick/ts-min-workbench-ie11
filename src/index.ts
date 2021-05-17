@@ -1,4 +1,4 @@
-import './lib.ie11.dom.js';
+import { arrayFrom } from './lib.ie11.core.js';
 
 import {
   mapBuilder,
@@ -9,7 +9,9 @@ import {
 
 import { mapEntries, setKeys } from './lib.ie11.iterable.js';
 
-(function main() {
+import './lib.ie11.dom.js';
+
+(function main(...args) {
   const u1 = new URL('https://example.com/test?t=1&u=2#index');
   console.log(u1);
 
@@ -59,7 +61,20 @@ import { mapEntries, setKeys } from './lib.ie11.iterable.js';
 
   console.log(ws1);
   console.log(ws1.has(m1));
-})();
+
+  console.log(args);
+  for (let i of arrayFrom(arguments)) {
+    console.log(i);
+  }
+
+  //const _glo = Function('return this')();
+  //const arr1 = new Array();
+  
+  console.dir(Symbol.iterator);
+  console.dir(Symbol.iterator.toString());
+
+  console.dir(Symbol.hasInstance);
+})('arg1', 'arg2');
 
 /*
 (function test(): void {
